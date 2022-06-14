@@ -34,19 +34,43 @@
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
 
+acc_balance = 0
+shop_list = []
+
+def acc_increase(acc_balance):
+    acc_balance += float(input('Введите сумму пополнения: '))
+    return(acc_balance)
+
+def buy(acc_balance):
+    amount = float(input('Введите сумму покупки: '))
+    if  amount > acc_balance:
+        print('Денег недостаточно для покупки!')
+        return (acc_balance)
+    else:
+        shop_list.append(input('Название покупки: ')+' '+str(amount))
+        acc_balance -= amount
+        return(acc_balance)
+
+def print_history():
+    print('Список  покупок: ')
+    for item in shop_list:
+        print(item)
+
+
 while True:
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
     print('4. выход')
 
-    choice = input('Выберите пункт меню')
+    choice = input('Выберите пункт меню ')
+
     if choice == '1':
-        pass
+        acc_balance = acc_increase(acc_balance)
     elif choice == '2':
-        pass
+        acc_balance = buy(acc_balance)
     elif choice == '3':
-        pass
+        print_history()
     elif choice == '4':
         break
     else:
